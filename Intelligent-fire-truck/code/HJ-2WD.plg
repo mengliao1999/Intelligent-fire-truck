@@ -1,0 +1,231 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+E:\1、2WD灭火小车光盘\HJ-2WD智能小车光盘2019\1、HJ-2WDI小车视频教程\40、HJ-2WD智能车教程 多功能综合实验\HJ-2WD智能小车多功能综合实验实验\HJ-2WD.uvproj
+Project File Date:  01/29/2019
+
+<h2>Output:</h2>
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYSCAN?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+Program Size: data=14.0 xdata=0 code=1634
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 3 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+MAIN.C(108): warning C206: 'zuc': missing function-prototype
+MAIN.C(141): error C231: 'zuc': redefinition
+MAIN.C(150): error C231: 'zuc': redefinition
+Target not created
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+MAIN.C(108): warning C206: 'zuc': missing function-prototype
+MAIN.C(141): error C231: 'zuc': redefinition
+MAIN.C(150): error C231: 'zuc': redefinition
+Target not created
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEYSCAN?MAIN
+Program Size: data=14.0 xdata=0 code=1630
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 3 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEY?MAIN
+Program Size: data=14.0 xdata=0 code=1630
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 3 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?PZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?MF?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+Program Size: data=14.0 xdata=0 code=1618
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 6 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?PZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?MF?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+Program Size: data=14.0 xdata=0 code=1637
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 5 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?PZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?MF?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEY?MAIN
+Program Size: data=14.0 xdata=0 code=1637
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 6 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?PZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?MF?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+Program Size: data=14.0 xdata=0 code=1637
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 5 Warning(s).
+Build target '目标 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?PZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?MF?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+Program Size: data=14.0 xdata=0 code=1637
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 4 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?PZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?MF?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+Program Size: data=14.0 xdata=0 code=1639
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 5 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?PZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?MF?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+Program Size: data=14.0 xdata=0 code=1640
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 5 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?PZ?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+Program Size: data=14.0 xdata=0 code=1661
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 4 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+Program Size: data=14.0 xdata=0 code=1682
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 3 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+Program Size: data=14.0 xdata=0 code=1682
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 3 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+Program Size: data=14.0 xdata=0 code=1682
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 3 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+Program Size: data=14.0 xdata=0 code=1682
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 3 Warning(s).
+Build target '目标 1'
+compiling main.c...
+HJ-2WD.h(1): warning C323: newline expected, extra characters found
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?WIFI?MAIN
+Program Size: data=14.0 xdata=0 code=1682
+creating hex file from "HJ-2WD"...
+"HJ-2WD" - 0 Error(s), 3 Warning(s).

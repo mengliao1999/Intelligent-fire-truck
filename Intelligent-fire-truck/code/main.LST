@@ -1,0 +1,395 @@
+C51 COMPILER V9.01   MAIN                                                                  02/03/2019 17:46:39 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1                          /*********************************************************************************
+   2          * 【作    者】： 慧净电子:
+   3          * 【网    站】： http://www.hlmcu.com/ 
+   4          * 【实验平台】： HJ-2WD
+   5          * 【外部晶振】： 11.0592mhz     
+   6          * 【主控芯片】： STC89C52
+   7          * 【编译环境】： Keil μVisio4
+   8          * 【程序功能】：慧净HJ-2WD智能小车多功能综合实验                                                                            
+   9          **********************************************************************************/
+  10          #include <reg52.h> //51头文件
+  11          #include <HJ-2WD.h>//HJ-2WD智能小车配置文件
+*** WARNING C323 IN LINE 1 OF HJ-2WD.h: newline expected, extra characters found
+  12          unsigned char pwm_left_val = 140;//左电机占空比值 取值范围0-170，0最快
+  13          unsigned char pwm_right_val = 150;//右电机占空比值取值范围0-170 ,0最快
+  14          unsigned char pwm_t;//周期
+  15          unsigned char control=0X01;//车运动控制全局变量，默认开机为停车状态
+  16          void delay(unsigned int z)//毫秒级延时
+  17          {
+  18   1              unsigned int x,y;
+  19   1              for(x = z; x > 0; x--)
+  20   1                      for(y = 114; y > 0 ; y--);
+  21   1      }       
+  22          /*小车前进*/
+  23          void forward()
+  24          {
+  25   1              left_motor_go; //左电机前进
+  26   1              right_motor_go; //右电机前进
+  27   1      }
+  28          /*小车左转*/
+  29          void left_run()
+  30          {
+  31   1              left_motor_stops; //左电机停止
+  32   1              right_motor_go; //右电机前进    
+  33   1      }
+  34          /*小车右转*/
+  35          void right_run()
+  36          {
+  37   1              right_motor_stops;//右电机停止
+  38   1              left_motor_go;    //左电机前进
+  39   1      }
+  40          
+  41          void left_d()
+  42          {
+  43   1              left_motor_back; //左电机停止
+  44   1              right_motor_go; //右电机前进    
+  45   1      }
+  46          
+  47          void right_d()
+  48          {
+  49   1              left_motor_go; //左电机停止
+  50   1              right_motor_back; //右电机前进  
+  51   1      }
+  52          
+  53          
+  54          /*PWM控制使能 小车后退*/
+C51 COMPILER V9.01   MAIN                                                                  02/03/2019 17:46:39 PAGE 2   
+
+  55          void backward()
+  56          {
+  57   1              left_motor_back; //左电机后退
+  58   1              right_motor_back; //右电机后退  
+  59   1      }
+  60          void stop()
+  61          {
+  62   1                      left_motor_stops; //左电机后退
+  63   1              right_motor_stops; //右电机后退 
+  64   1      }
+  65          
+  66          //定时器0中断
+  67          void timer0() interrupt 1
+  68          {
+  69   1              pwm_t++;//周期计时加
+  70   1              if(pwm_t == 255)
+  71   1                      pwm_t = EN1 = EN2 = 0;
+  72   1              if(pwm_left_val == pwm_t)//左电机占空比 
+  73   1                      EN1 = 1;                
+  74   1              if(pwm_right_val == pwm_t)//右电机占空比
+  75   1                      EN2 = 1;                         
+  76   1      }
+  77           /******************************************************************/
+  78          /* 串口中断程序*/
+  79          /******************************************************************/
+  80          void UART_SER () interrupt 4
+  81          {
+  82   1              unsigned char n;        //定义临时变量
+  83   1      
+  84   1              if(RI)          //判断是接收中断产生
+  85   1              {
+  86   2                      RI=0;   //标志位清零
+  87   2                      n=SBUF; //读入缓冲区的值
+  88   2      
+  89   2                      control=n;
+  90   2                      if((n >= 51) && (n <= 150))//左电机调速0~100个档位 手机端软件进行调节
+  91   2                              pwm_left_val = 170-((n-50)*1.7);        
+  92   2                      if((n >= 151) && (n <= 250))      //右电机调速0~100个档位 手机端软件进行调节
+  93   2                              pwm_right_val = 170-((n-150)*1.7);
+  94   2              }
+  95   1      
+  96   1      }
+  97          
+  98          void T0_init()
+  99          {
+ 100   1              TMOD |= 0x02;//8位自动重装模块
+ 101   1              TH0 = 220;
+ 102   1              TL0 = 220;//11.0592M晶振下占空比最大比值是256,输出100HZ
+ 103   1              TR0 = 1;//启动定时器0
+ 104   1              ET0 = 1;//允许定时器0中断
+ 105   1              EA      = 1;//总中断允许        
+ 106   1      }
+ 107          
+ 108          //蓝牙初始化
+ 109          void boothint(void)
+ 110          {
+ 111   1         
+ 112   1              SCON = 0x50;    // SCON: 模式1, 8-bit UART, 使能接收
+ 113   1              TMOD |= 0x20;
+ 114   1              TH1=0xfd;               //波特率9600 初值
+ 115   1              TL1=0xfd;
+ 116   1              TR1= 1;
+C51 COMPILER V9.01   MAIN                                                                  02/03/2019 17:46:39 PAGE 3   
+
+ 117   1              EA = 1;     //开总中断
+ 118   1              ES= 1;                  //打开串口中断
+ 119   1      
+ 120   1      
+ 121   1      }
+ 122          //小车自由行函数
+ 123          void zuc(void)
+ 124                  {
+ 125   1              forward();       //调用前进函数
+ 126   1              delay(200);     
+ 127   1              right_d();       //调用小车右转 函数
+ 128   1              delay(200);     
+ 129   1              backward();
+ 130   1              delay(200);     
+ 131   1              left_d();
+ 132   1              delay(200);     
+ 133   1              }
+ 134          //小车循迹函数
+ 135          void cz(void)
+ 136          {
+ 137   1                              //巡黑线 有信号为0 白线  没有信号为1 黑线
+ 138   1      
+ 139   1                    if(Left_cg==0&&Right_cg==0)
+ 140   1      
+ 141   1                                forward();     //调用前进函数
+ 142   1      
+ 143   1                                else
+ 144   1                               {              
+ 145   2                                      if(Left_cg==1&&Right_cg==1)
+ 146   2      
+ 147   2                                {
+ 148   3                                stop();   //调用停止函数
+ 149   3                                }
+ 150   2                                            if(Left_cg==1&&Right_cg==0)           //左边检测到黑线
+ 151   2                                       
+ 152   2                                {              
+ 153   3                                        left_d();               //调用小车左转  函数
+ 154   3                                 }
+ 155   2                                 
+ 156   2                                 if(Right_cg==1&&Left_cg==0)          //右边检测到黑线
+ 157   2                                        
+ 158   2                                {             
+ 159   3                                      right_d();                 //调用小车右转       函数
+ 160   3                                 }
+ 161   2      
+ 162   2                              }
+ 163   1      }
+ 164          
+ 165          //小车红外避障函数
+ 166          void pz(void)
+ 167          {
+ 168   1                               //有信号为0 有障  没有信号为1 前面没有物体
+ 169   1      
+ 170   1                    if(Left_be==1&&Right_be==1)  //前面没有物体小车前进
+ 171   1      
+ 172   1                                {
+ 173   2                                forward();   //调用前进函数
+ 174   2                                }
+ 175   1      
+ 176   1                                        if(Left_be==0&&Right_be==0)    //两个传感器同时检测到物体小车停车
+ 177   1      
+ 178   1                                {
+C51 COMPILER V9.01   MAIN                                                                  02/03/2019 17:46:39 PAGE 4   
+
+ 179   2                                //stop();   //调用停止函数
+ 180   2                                backward();//
+ 181   2                                delay(50);
+ 182   2                    right_d();                   //调用小车右转       函数
+ 183   2                                delay(30);
+ 184   2                                }
+ 185   1                                                        
+ 186   1                                if(Left_be==0&&Right_be==1)       //左边检测到物体
+ 187   1                                       
+ 188   1                                {              
+ 189   2                                      right_d();                 //调用小车右转       函数
+ 190   2                                 }
+ 191   1                                 
+ 192   1                                 if(Right_be==0&&Left_be==1)          //右边检测到物体
+ 193   1                                        
+ 194   1                                {             
+ 195   2                                      left_d();                 //调用小车左转  函数
+ 196   2                                 }
+ 197   1      }
+ 198          //小车循迹灭火函数
+ 199          void mf(void)
+ 200          {
+ 201   1                   //巡黑线 有信号为0 白线  没有信号为1 黑线
+ 202   1                               //有火焰信号=0   没有火焰信号=1 
+ 203   1      
+ 204   1                    if(Left_cg==0&&Right_cg==0)
+ 205   1      
+ 206   1                                forward();     //调用前进函数
+ 207   1      
+ 208   1                                else
+ 209   1                               {              
+ 210   2                                      if(Left_cg==1&&Right_cg==1)
+ 211   2      
+ 212   2                                {
+ 213   3                                stop();   //调用停止函数
+ 214   3                                }
+ 215   2                                            if(Left_cg==1&&Right_cg==0)           //左边检测到黑线
+ 216   2                                       
+ 217   2                                {              
+ 218   3                                        left_d();               //调用小车左转  函数
+ 219   3                                 }
+ 220   2                                 
+ 221   2                                 if(Right_cg==1&&Left_cg==0)          //右边检测到黑线
+ 222   2                                        
+ 223   2                                {             
+ 224   3                                      right_d();                 //调用小车右转       函数
+ 225   3                                 }
+ 226   2                                  if(M_0_led==0)              //火焰传感器测到火
+ 227   2                                        {       
+ 228   3                                          stop();             //调用电机停止函数
+ 229   3                                              DJ=0;      //打开风扇灭火
+ 230   3                                              delay(200);             //
+ 231   3                                              DJ=1;      //关掉gooo风扇
+ 232   3                                          stop();             //调用电机停止函数
+ 233   3                                          delay(100);         //？？毫秒
+ 234   3                                        }
+ 235   2      
+ 236   2                              }
+ 237   1      }
+ 238          
+ 239          //小车蓝牙函数
+ 240          void bt(void)
+C51 COMPILER V9.01   MAIN                                                                  02/03/2019 17:46:39 PAGE 5   
+
+ 241          {
+ 242   1      if(control>0X07)//如果成立，则表示接收的命令不在运行命令内
+ 243   1                 {
+ 244   2                      stop(); //  停车 
+ 245   2                 }
+ 246   1                      switch(control)
+ 247   1                      {
+ 248   2                              case 0X02:      forward();      break;  //前进
+ 249   2                              case 0X03:      backward();     break;  //后退
+ 250   2                              case 0X04:      left_run();     break;  //左转
+ 251   2                              case 0X05:      right_run();    break;//右转
+ 252   2                              case 0X01:      stop();         break;//停车
+ 253   2                              case 0X06:      left_d();       break;//左旋转
+ 254   2                              case 0X07:      right_d();      break;//右旋转
+ 255   2                              case 0X08:      beep = 0;       break;//鸣笛
+ 256   2                              case 0X09:      beep = 1;       break;//停止鸣笛
+ 257   2                      }
+ 258   1      }
+ 259          
+ 260          //小车WIFI函数    需要在上位机控制端修改指令 原FF000000FF 改成 00 FF000100FF 改成01   FF000200FF  改成03 
+ 261          // FF000400FF 改成04 FF000500FF 改成05  FF000600FF 改成06  FF000700FF 改成07
+ 262          void wifi(void)
+ 263          {
+ 264   1      if(control>0X07)//如果成立，则表示接收的命令不在运行命令内
+ 265   1                 {
+ 266   2                      stop(); //  停车 
+ 267   2                 }
+ 268   1                      switch(control)
+ 269   1                      {
+ 270   2                              case 0X02:      forward();      break;  //前进
+ 271   2                              case 0X03:      backward();     break;  //后退
+ 272   2                              case 0X04:      left_run();     break;  //左转
+ 273   2                              case 0X05:      right_run();    break;//右转
+ 274   2                              case 0X01:      stop();         break;//停车
+ 275   2                              case 0X06:      left_d();       break;//左旋转
+ 276   2                              case 0X07:      right_d();      break;//右旋转
+ 277   2                              case 0X08:      beep = 0;       break;//鸣笛
+ 278   2                              case 0X09:      beep = 1;       break;//停止鸣笛
+ 279   2                      }
+ 280   1      }
+ 281          
+ 282          void key()
+ 283          {
+ 284   1              for(;;) //死循环
+ 285   1              {
+ 286   2                      if(key_s1 == 0)// 实时检测S1按键是否被按下
+ 287   2                      {
+ 288   3                              delay(5); //软件消抖
+ 289   3                              if(key_s1 == 0)//再检测S1是否被按下
+ 290   3                              {
+ 291   4                                      while(!key_s1);//松手检测
+ 292   4                                      while(1)
+ 293   4                                      {
+ 294   5                                       zuc();    //调用小车自由行函数
+ 295   5                                      }
+ 296   4                                      break;          //退出FOR死循环
+ 297   4                              }
+ 298   3                      }
+ 299   2                                      if(key_s2 == 0)// 实时检测S2按键是否被按下
+ 300   2                      {
+ 301   3                              delay(5); //软件消抖
+ 302   3                              if(key_s2 == 0)//再检测S2是否被按下
+C51 COMPILER V9.01   MAIN                                                                  02/03/2019 17:46:39 PAGE 6   
+
+ 303   3                              {
+ 304   4                                      while(!key_s2);//松手检测
+ 305   4                      while(1)
+ 306   4                                      {                                
+ 307   5                                       cz();     //调用小车循迹函数
+ 308   5                                      }
+ 309   4                                      break;          //退出FOR死循环
+ 310   4                              }
+ 311   3                      }
+ 312   2                              if(key_s3 == 0)// 实时检测S3按键是否被按下
+ 313   2                      {
+ 314   3                              delay(5); //软件消抖
+ 315   3                              if(key_s3 == 0)//再检测S3是否被按下
+ 316   3                              {
+ 317   4                                      while(!key_s3);//松手检测
+ 318   4                      while(1)
+ 319   4                                      {        
+ 320   5                                       pz();     //调用小车红外避障函数
+ 321   5                                      }
+ 322   4                                      break;          //退出FOR死循环
+ 323   4                              }
+ 324   3                      }
+ 325   2                      if(key_s4 == 0)// 实时检测S4按键是否被按下
+ 326   2                      {
+ 327   3                              delay(5); //软件消抖
+ 328   3                              if(key_s4 == 0)//再检测S4是否被按下
+ 329   3                              {
+ 330   4                                      while(!key_s4);//松手检测
+ 331   4                      while(1)
+ 332   4                                      {        
+ 333   5                                       mf();   //调用小车循迹灭火函数
+ 334   5                                       //bt();           //调用小车蓝牙函数
+ 335   5                                      }
+ 336   4                                      break;          //退出FOR死循环
+ 337   4                              }
+ 338   3                      }
+ 339   2              }       
+ 340   1      }
+ 341          
+ 342          void main()
+ 343          {
+ 344   1      
+ 345   1              boothint();
+ 346   1              T0_init();//定时器0初始化，产生PWM信号
+ 347   1              while(1)
+ 348   1              {
+ 349   2               //zuc();          //调用小车自由行函数
+ 350   2               //cz();           //调用小车循迹函数
+ 351   2               //pz();           //调用小车红外避障函数
+ 352   2               //mf();   //调用小车循迹灭火函数
+ 353   2               //bt();           //调用小车蓝牙函数
+ 354   2               //wifi();
+ 355   2                 key();  //按下s1 启动小车自由行 按下s2启动小车循迹   按下s3（蜂鸣器会响）启动红外避障  按下s4启动 循迹
+             -灭火
+ 356   2                                 //每次转换程序时要按一下复位，再按启动按钮，如果需要停止请按一下复位。
+ 357   2              }
+ 358   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    808    ----
+   CONSTANT SIZE    =   ----    ----
+C51 COMPILER V9.01   MAIN                                                                  02/03/2019 17:46:39 PAGE 7   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
